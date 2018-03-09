@@ -1,0 +1,38 @@
+<div>
+
+  <div class="row">
+    <div class="col-md-2">
+      New link
+    </div>
+    <div class="col-md-2">
+      <input class="form-control" [(ngModel)]="addLink">
+    </div>
+    <div class="col-md-3">
+      {{percent}}
+    </div>
+  </div>
+
+  <button class="btn btn-primary" (click)="addToDonload()">Add</button>
+
+  <div *ngFor="let element of downloadElements; let i = index" class="row">
+    <div class="col-md-1">
+      {{i + 1}}
+    </div>
+    <div class="col-md-3">
+      <div class="progress">
+        <div class="progress-bar" [ngClass]="{'bg-success': element.downloadStatus.percent === 100}"
+             role="progressbar" [style.width]="element.downloadStatus.percent + '%'" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      {{element.id}}
+    </div>
+    <div class="col-md-2">
+      {{element.downloadStatus.percent}}
+    </div>
+    <div class="col-md-2">
+      {{element.downloadStatus.msg}}
+    </div>
+  </div>
+
+</div>
