@@ -9,12 +9,14 @@ import {AddGenericLinkComponent} from './add-generic-link/add-generic-link.compo
 import {DownloadProviderService} from "./downloader/download-provider.service";
 import {ServerDownloadProviderService} from "./downloader/server-download-provider.service";
 import {FormsModule} from "@angular/forms";
+import { DownloadListComponent } from './download-list/download-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AddGenericLinkComponent
+    AddGenericLinkComponent,
+    DownloadListComponent
   ],
   imports: [
     BrowserModule,

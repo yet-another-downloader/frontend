@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DownloadProviderService} from "./download-provider.service";
-import {DownloadStatus} from "./download.models";
-import {Observable} from "rxjs/Observable";
-import 'rxjs/Rx';
+import {DownloadElement, DownloadStatus} from "./download.models";
+import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {map, filter} from "rxjs/operators";
 
 @Injectable()
 export class ServerDownloadProviderService extends DownloadProviderService {
@@ -17,7 +17,9 @@ export class ServerDownloadProviderService extends DownloadProviderService {
     // type = 4 : Response
     // https://github.com/angular/angular/blob/master/packages/common/http/src/xhr.ts
     return this.httpClient.get(`http://localhost:8080/v1/youtube/download_video/TtIN4_RZwZE`,
-      {observe: 'events', reportProgress: true, responseType: 'text'}).map(response => response as any).map(x => {
+      {observe: 'events', reportProgress: true, responseType: 'text'}).pipe(
+      map(response => response as any),
+      map((x: any) => {
 
         if (x.type !== 3) {
           return null;
@@ -37,18 +39,25 @@ export class ServerDownloadProviderService extends DownloadProviderService {
           // full response
           return null;
         }
-    }).filter(x => {
-      return x != null && x !== '';
-    } ).map( (x: string) => {
+      }),
+      filter(x => {
+        return x != null && x !== '';
+      }),
+      map((x: string) => {
 
-      // TODO: FIX json decode double quotes
-      let s = this.escapeDoubleQuotes(x);
-      return JSON.parse(s)
-    });
+        // TODO: FIX json decode double quotes
+        let s = this.escapeDoubleQuotes(x);
+        return JSON.parse(s)
+      })
+    );
   }
 
   private escapeDoubleQuotes(str) {
-    return str.replace(/\\([\s\S])|(")/g,"$1$2"); // thanks @slevithan!
+    return str.replace(/\\([\s\S])|(")/g, "$1$2"); // thanks @slevithan!
+  }
+
+  getAll(): Observable<DownloadElement[]> {
+    return this.httpClient.get(`http://localhost:8080/v1/youtube/list_items`) as any;
   }
 
 }

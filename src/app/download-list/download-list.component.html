@@ -1,0 +1,40 @@
+<div>
+
+  <div class="row download-row" *ngFor="let item of items; let i = index">
+
+    <div class="col-md-1">
+      {{i + 1}}
+    </div>
+
+    <!--<div class="col-md-3">-->
+    <!--{{item | json}}-->
+    <!--</div>-->
+
+
+    <div class="col-md-2">
+      {{item.partUrl}} <br>
+
+      <div *ngIf="item.createdDate != null">
+        <small>
+          {{item.createdDate | date}}
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-1">
+      {{item.status}} <br>
+      <div *ngIf="item.lastUpdateDate != null">
+        <small>
+          {{item.lastUpdateDate | date}}
+        </small>
+      </div>
+    </div>
+
+
+    <div class="col-md-3">
+      {{item.url}}
+    </div>
+
+  </div>
+
+</div>

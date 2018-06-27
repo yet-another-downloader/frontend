@@ -2,17 +2,19 @@
 
   <div class="row">
     <div class="col-md-2">
-      New link
+      Download ID/url
     </div>
     <div class="col-md-2">
       <input class="form-control" [(ngModel)]="addLink">
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       {{percent}}
     </div>
-  </div>
 
-  <button class="btn btn-primary" (click)="addToDonload()">Add</button>
+    <div class="col-md-3 pull-left">
+      <button class="btn btn-primary pull-left" (click)="addToDonload()">Add</button>
+    </div>
+  </div>
 
   <div *ngFor="let element of downloadElements; let i = index" class="row">
     <div class="col-md-1">
