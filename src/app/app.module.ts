@@ -10,6 +10,7 @@ import {DownloadProviderService} from "./downloader/download-provider.service";
 import {ServerDownloadProviderService} from "./downloader/server-download-provider.service";
 import {FormsModule} from "@angular/forms";
 import { DownloadListComponent } from './download-list/download-list.component';
+import {AppConfig} from "./core/app-config";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DownloadListComponent } from './download-list/download-list.component';
   ],
   providers: [
 
-    {provide: DownloadProviderService, useClass: ServerDownloadProviderService}
+    {provide: DownloadProviderService, useClass: ServerDownloadProviderService},
+    {provide: AppConfig, useClass: AppConfig}
 
   ],
   bootstrap: [AppComponent]

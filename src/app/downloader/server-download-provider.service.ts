@@ -4,19 +4,20 @@ import {DownloadElement, DownloadStatus} from "./download.models";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map, filter} from "rxjs/operators";
+import {AppConfig} from "../core/app-config";
 
 @Injectable()
 export class ServerDownloadProviderService extends DownloadProviderService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private appConfig: AppConfig) {
     super();
   }
 
-  download(url: string): Observable<DownloadStatus> {
+  download(url: string, type: string): Observable<DownloadStatus> {
     // type = 3 ; partialText
     // type = 4 : Response
     // https://github.com/angular/angular/blob/master/packages/common/http/src/xhr.ts
-    return this.httpClient.get(`http://localhost:8080/v1/youtube/download_video/TtIN4_RZwZE`,
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/v1/downloader/download_video/TtIN4_RZwZE/${type}`,
       {observe: 'events', reportProgress: true, responseType: 'text'}).pipe(
       map(response => response as any),
       map((x: any) => {
@@ -57,7 +58,7 @@ export class ServerDownloadProviderService extends DownloadProviderService {
   }
 
   getAll(): Observable<DownloadElement[]> {
-    return this.httpClient.get(`http://localhost:8080/v1/youtube/list_items`) as any;
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/v1/downloader/list_items`) as any;
   }
 
 }

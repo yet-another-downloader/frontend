@@ -1,5 +1,23 @@
 <div>
 
+  <div class="row download-row">
+    <div class="col-md-1">
+       №
+    </div>
+
+    <div class="col-md-2">
+      Name
+    </div>
+
+    <div class="col-md-1">
+     Status
+    </div>
+
+    <div class="col-md-3">
+      URL
+    </div>
+  </div>
+
   <div class="row download-row" *ngFor="let item of items; let i = index">
 
     <div class="col-md-1">
@@ -9,7 +27,6 @@
     <!--<div class="col-md-3">-->
     <!--{{item | json}}-->
     <!--</div>-->
-
 
     <div class="col-md-2">
       {{item.partUrl}} <br>
@@ -23,6 +40,11 @@
 
     <div class="col-md-1">
       {{item.status}} <br>
+
+      <div *ngIf="item.uploadedPercentage != null && item.status !== 'DONE'">
+        {{item.uploadedPercentage}}
+      </div>
+
       <div *ngIf="item.lastUpdateDate != null">
         <small>
           {{item.lastUpdateDate | date}}
@@ -30,9 +52,10 @@
       </div>
     </div>
 
-
     <div class="col-md-3">
-      {{item.url}}
+      <a [href]="item.url" target="_blank">
+        {{item.url}}
+      </a>
     </div>
 
   </div>

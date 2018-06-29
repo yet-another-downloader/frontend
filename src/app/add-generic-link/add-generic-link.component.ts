@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DownloadProviderService} from "../downloader/download-provider.service";
 import {DownloadElement} from "../downloader/download.models";
 
+const DOWNLOAD_TYPE_YOUTUBE = "YOUTUBE";
+
 @Component({
   selector: 'app-add-generic-link',
   templateUrl: './add-generic-link.component.html',
@@ -18,9 +20,11 @@ export class AddGenericLinkComponent implements OnInit {
   ngOnInit() {
   }
 
-  addToDonload() {
+  addToDownload() {
     let url = this.addLink;
-    this.downloadProviderService.download(url).subscribe(x => {
+    this.downloadProviderService.download(url, DOWNLOAD_TYPE_YOUTUBE).subscribe(x => {
+
+      // TODO: send event to redraw in download-list component
 
       let find = this.downloadElements.findIndex(l => l.id === url);
       if (find !== -1) {
