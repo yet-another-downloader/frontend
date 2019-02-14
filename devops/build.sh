@@ -21,7 +21,7 @@ function build {
     docker build -t $DOCKER_JOB_IMAGE_TAG .
     docker push $DOCKER_JOB_IMAGE_TAG
 
-    echo "Tag imaginarium docker tag"
+    echo "Tag CI docker tag"
     docker tag $DOCKER_JOB_IMAGE_TAG $DOCKER_IMAGE:$CI_DEPLOY_TAG
     docker push $DOCKER_IMAGE:$CI_DEPLOY_TAG
 
