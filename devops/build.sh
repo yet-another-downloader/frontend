@@ -8,6 +8,9 @@ export HOME_FOLDER=`pwd`
 
 echo "Create docker config"
 mkdir /root/.docker
+
+set -e
+
 # deploy dockers
 echo $DOCKER_AUTH_CONFIG > /root/.docker/config.json
 
