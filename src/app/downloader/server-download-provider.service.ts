@@ -17,7 +17,7 @@ export class ServerDownloadProviderService extends DownloadProviderService {
     // type = 3 ; partialText
     // type = 4 : Response
     // https://github.com/angular/angular/blob/master/packages/common/http/src/xhr.ts
-    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/v1/downloader/download_video/TtIN4_RZwZE/${type}`,
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/download_video/TtIN4_RZwZE/${type}`,
       {observe: 'events', reportProgress: true, responseType: 'text'}).pipe(
       map(response => response as any),
       map((x: any) => {
@@ -58,7 +58,7 @@ export class ServerDownloadProviderService extends DownloadProviderService {
   }
 
   getAll(): Observable<DownloadElement[]> {
-    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/v1/downloader/list_items`) as any;
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`) as any;
   }
 
 }
