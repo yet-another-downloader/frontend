@@ -11,6 +11,8 @@ import {ServerDownloadProviderService} from "./downloader/server-download-provid
 import {FormsModule} from "@angular/forms";
 import { DownloadListComponent } from './download-list/download-list.component';
 import {AppConfig} from "./core/app-config";
+import {DownloadStore} from "./download/download-store";
+import {AppGlobalEventBusService} from "./store/app-global-event-bus.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {AppConfig} from "./core/app-config";
   providers: [
 
     {provide: DownloadProviderService, useClass: ServerDownloadProviderService},
-    {provide: AppConfig, useClass: AppConfig}
+    {provide: AppConfig, useClass: AppConfig},
+    {provide: DownloadStore, useClass: DownloadStore},
+    {provide: AppGlobalEventBusService, useClass: AppGlobalEventBusService}
 
   ],
   bootstrap: [AppComponent]
