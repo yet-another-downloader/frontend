@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-3 pull-left">
-      <button class="btn btn-primary pull-left" (click)="addToDownload()">Download</button>
+      <button class="btn btn-primary pull-left" (click)="addToDownload()" [disabled]="!availableDownload()">Download</button>
     </div>
   </div>
 

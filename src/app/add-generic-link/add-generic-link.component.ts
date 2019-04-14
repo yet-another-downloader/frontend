@@ -11,13 +11,17 @@ const DOWNLOAD_TYPE_YOUTUBE = "YOUTUBE";
 })
 export class AddGenericLinkComponent implements OnInit {
 
-  public addLink: string = 'TtIN4_RZwZE';
+  public addLink: string = '';
 
   downloadElements: DownloadElement[] = [];
 
   constructor(private downloadProviderService: DownloadProviderService) { }
 
   ngOnInit() {
+  }
+
+  availableDownload() {
+    return this.addLink.length > 0;
   }
 
   addToDownload() {

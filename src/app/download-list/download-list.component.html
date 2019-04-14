@@ -33,7 +33,7 @@
 
       <div *ngIf="item.createdDate != null">
         <small>
-          {{item.createdDate | date}}
+          {{item.createdDate | date:'short'}}
         </small>
       </div>
     </div>
@@ -47,7 +47,7 @@
 
       <div *ngIf="item.lastUpdateDate != null">
         <small>
-          {{item.lastUpdateDate | date}}
+          {{item.lastUpdateDate | date:'short'}}
         </small>
       </div>
     </div>
