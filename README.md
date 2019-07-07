@@ -29,5 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Docker run
 
 ```bash
-docker run -p 9044:80 -d -e YAD_GATEWAY_URL="127.0.0.1:8080" docker-local.artifactory.nbakaev.com/yad-frontend:3
+docker run -p 9044:80 -d \
+  -e YAD_GATEWAY_URL="127.0.0.1:8080" \
+  docker-local.artifactory.nbakaev.com/yad-frontend:3
 ```
