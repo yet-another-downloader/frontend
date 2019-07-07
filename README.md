@@ -27,4 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Docker run
+
+```bash
 docker run -p 9044:80 -d -e YAD_GATEWAY_URL="127.0.0.1:8080" docker-local.artifactory.nbakaev.com/yad-frontend:3
+```
