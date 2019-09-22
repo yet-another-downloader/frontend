@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DownloadElement} from "../downloader/download.models";
 import {DownloadProviderService} from "../downloader/download-provider.service";
 import {DownloadStore} from "../download/download-store";
+import { faTimes, faCheck,faSpinner,faRedo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-download-list',
@@ -13,6 +14,10 @@ export class DownloadListComponent implements OnInit {
   items: DownloadElement[] = [];
   private sortField = 'lastUpdateDate';
   private sortDirection = 'DESC';
+  faTimes = faTimes;
+  faCheck = faCheck;
+  faSpinner = faSpinner;
+  faRedo = faRedo;
 
   constructor(private dw: DownloadProviderService, private downloadStore: DownloadStore) { }
 

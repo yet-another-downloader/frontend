@@ -10,6 +10,8 @@ export class DownloadElement {
   id: string;
   downloadStatus = new DownloadStatus();
   partUrl: string;
+  name: string;
+  img: string;
   createdDate: Date;
   lastUpdateDate: Date;
   status: string;

@@ -13,6 +13,8 @@ import { DownloadListComponent } from './download-list/download-list.component';
 import {AppConfig} from "./core/app-config";
 import {DownloadStore} from "./download/download-store";
 import {AppGlobalEventBusService} from "./store/app-global-event-bus.service";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {AppGlobalEventBusService} from "./store/app-global-event-bus.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule,
+    NgbTooltipModule
   ],
   providers: [
 

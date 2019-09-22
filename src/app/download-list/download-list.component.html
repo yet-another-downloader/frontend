@@ -6,14 +6,16 @@
         №
       </b>
     </div>
-
     <div class="col-md-2">
+    </div>
+
+    <div class="col-md-3">
       <b>
         Name
       </b>
     </div>
 
-    <div class="col-lg-2 col-md-2" (click)="sortByStatus()">
+    <div class="col-lg-1 col-md-1" (click)="sortByStatus()">
       <b>
         Status
       </b>
@@ -32,12 +34,16 @@
       {{i + 1}}
     </div>
 
+    <div class="col-md-2">
+      <img [src]="item.img" *ngIf="item.img != null">
+    </div>
+
     <!--<div class="col-md-3">-->
     <!--{{item | json}}-->
     <!--</div>-->
 
-    <div class="col-md-2">
-      {{item.partUrl}} <br>
+    <div class="col-md-3">
+      {{item.name || '???'}} <br>
 
       <div *ngIf="item.createdDate != null">
         <small>
@@ -46,30 +52,52 @@
       </div>
     </div>
 
-    <div class="col-md-2 col-lg-2">
-      {{item.status}} <br>
+    <div class="col-md-1 col-lg-1">
 
-      <div *ngIf="item.uploadedPercentage != null && item.status !== 'DONE'">
-        {{item.uploadedPercentage}}
-      </div>
+      <span [ngSwitch]="item.status">
 
-      <div *ngIf="item.lastUpdateDate != null">
-        <small>
-          {{item.lastUpdateDate | date:'short'}}
-        </small>
-      </div>
+        <ng-template #tipContent>
+          <div *ngIf="item.lastUpdateDate != null">
+            <small>
+              {{item.lastUpdateDate | date:'short'}}
+            </small>
+          </div>
+        </ng-template>
+
+        <span *ngSwitchCase="'ERROR'" [ngbTooltip]="tipContent">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </span>
+
+        <span *ngSwitchCase="'DONE'" [ngbTooltip]="tipContent">
+          <fa-icon [icon]="faCheck"></fa-icon>
+        </span>
+
+        <span *ngSwitchCase="'DOWNLOADING'" [ngbTooltip]="tipContent">
+          <fa-icon [icon]="faSpinner"></fa-icon>
+        </span>
+
+        <span *ngSwitchDefault>
+          {{item.status}} <br>
+          <ng-container *ngTemplateOutlet="tipContent"></ng-container>
+        </span>
+      </span>
+
+      <span *ngIf="item.uploadedPercentage != null && item.status !== 'DONE'">
+        <b>
+        {{item.uploadedPercentage}}%
+        </b>
+      </span>
+
     </div>
 
     <div class="col-md-3">
       <a [href]="item.url" target="_blank">
-        {{item.url}}
+        {{item.partUrl}}
       </a>
     </div>
 
     <div class="col-md-1">
-      <button class="btn btn-default" (click)="retryDownload(item)">
-        Retry
-      </button>
+      <fa-icon [icon]="faRedo" (click)="retryDownload(item)" ngbTooltip="Retry"></fa-icon>
     </div>
 
   </div>
