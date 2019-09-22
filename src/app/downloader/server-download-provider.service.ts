@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map, filter} from "rxjs/operators";
 import {AppConfig} from "../core/app-config";
+import {StringUtils} from "../core/string.utils";
 
 @Injectable()
 export class ServerDownloadProviderService extends DownloadProviderService {
@@ -63,8 +64,14 @@ export class ServerDownloadProviderService extends DownloadProviderService {
     return str.replace(/\\([\s\S])|(")/g, "$1$2"); // thanks @slevithan!
   }
 
-  getAll(): Observable<DownloadElement[]> {
-    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`) as any;
+  getAll(sort: string): Observable<DownloadElement[]> {
+    let params = StringUtils.isEmpty(sort) ? null : `sortBy=${sort}`;
+
+    if (params == null) {
+      return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`) as any;
+    }
+
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items?${params}`) as any;
   }
 
 }

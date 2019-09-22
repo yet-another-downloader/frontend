@@ -2,19 +2,27 @@
 
   <div class="row download-row">
     <div class="col-md-1">
-       №
+      <b>
+        №
+      </b>
     </div>
 
     <div class="col-md-2">
-      Name
+      <b>
+        Name
+      </b>
     </div>
 
-    <div class="col-md-1">
-     Status
+    <div class="col-lg-2 col-md-2" (click)="sortByStatus()">
+      <b>
+        Status
+      </b>
     </div>
 
     <div class="col-md-3">
-      URL
+      <b>
+        URL
+      </b>
     </div>
   </div>
 
@@ -38,7 +46,7 @@
       </div>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-md-2 col-lg-2">
       {{item.status}} <br>
 
       <div *ngIf="item.uploadedPercentage != null && item.status !== 'DONE'">

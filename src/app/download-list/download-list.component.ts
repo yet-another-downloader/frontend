@@ -11,17 +11,33 @@ import {DownloadStore} from "../download/download-store";
 export class DownloadListComponent implements OnInit {
 
   items: DownloadElement[] = [];
+  private sortField = 'lastUpdateDate';
+  private sortDirection = 'DESC';
 
   constructor(private dw: DownloadProviderService, private downloadStore: DownloadStore) { }
 
+  private getCriteria() {
+    return `${this.sortField}:${this.sortDirection}`;
+  }
+
   ngOnInit() {
-    this.dw.getAll().subscribe(x => {
+    this.dw.getAll(this.getCriteria()).subscribe(x => {
       this.items = x;
     })
   }
 
   retryDownload(item: DownloadElement) {
     this.downloadStore.download(item.url);
+  }
+
+  sortByStatus() {
+    if (this.sortDirection === 'DESC') {
+      this.sortDirection = 'ASC';
+    } else {
+      this.sortDirection = 'DESC';
+    }
+
+    this.ngOnInit();
   }
 
 }
