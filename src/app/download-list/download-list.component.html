@@ -9,7 +9,7 @@
     <div class="col-md-2">
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-6">
       <b>
         Name
       </b>
@@ -21,11 +21,11 @@
       </b>
     </div>
 
-    <div class="col-md-3">
-      <b>
-        URL
-      </b>
-    </div>
+<!--    <div class="col-md-3">-->
+<!--      <b>-->
+<!--        URL-->
+<!--      </b>-->
+<!--    </div>-->
   </div>
 
   <div class="row download-row" *ngFor="let item of items; let i = index">
@@ -41,9 +41,13 @@
     <!--<div class="col-md-3">-->
     <!--{{item | json}}-->
     <!--</div>-->
+    <!--        {{item.partUrl}}-->
 
-    <div class="col-md-3">
-      {{item.name || '???'}} <br>
+    <div class="col-md-6">
+
+      <a [href]="item.url" target="_blank">
+        {{item.name || '???'}} <br>
+      </a>
 
       <div *ngIf="item.createdDate != null">
         <small>
@@ -90,11 +94,11 @@
 
     </div>
 
-    <div class="col-md-3">
-      <a [href]="item.url" target="_blank">
-        {{item.partUrl}}
-      </a>
-    </div>
+<!--    <div class="col-md-3">-->
+<!--      <a [href]="item.url" target="_blank">-->
+<!--        {{item.partUrl}}-->
+<!--      </a>-->
+<!--    </div>-->
 
     <div class="col-md-1">
       <fa-icon [icon]="faRedo" (click)="retryDownload(item)" ngbTooltip="Retry"></fa-icon>
