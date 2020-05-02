@@ -28,7 +28,7 @@
 <!--    </div>-->
   </div>
 
-  <div class="row download-row" *ngFor="let item of items; let i = index">
+  <div class="row download-row" *ngFor="let item of items | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let i = index ">
 
     <div class="col-md-1">
       {{i + 1}}
@@ -104,6 +104,21 @@
       <fa-icon [icon]="faRedo" (click)="retryDownload(item)" ngbTooltip="Retry"></fa-icon>
     </div>
 
+  </div>
+
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-2">
+      <input class="form-control" [(ngModel)]="pageSize" >
+    </div>
+    <div class="col-md-10">
+      <ngb-pagination
+        [maxSize]="10"
+        [rotate]="true" [boundaryLinks]="true"
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="count">
+      </ngb-pagination>
+    </div>
   </div>
 
 </div>

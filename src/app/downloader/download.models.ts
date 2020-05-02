@@ -18,3 +18,8 @@ export class DownloadElement {
   uploadedPercentage: string;
   url: string;
 }
+
+export class DownloadList {
+  items: DownloadElement[];
+  count: number;
+}

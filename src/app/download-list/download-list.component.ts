@@ -12,12 +12,15 @@ import { faTimes, faCheck,faSpinner,faRedo } from '@fortawesome/free-solid-svg-i
 export class DownloadListComponent implements OnInit {
 
   items: DownloadElement[] = [];
+  count = 0;
   private sortField = 'lastUpdateDate';
   private sortDirection = 'DESC';
   faTimes = faTimes;
   faCheck = faCheck;
   faSpinner = faSpinner;
   faRedo = faRedo;
+  page = 1;
+  pageSize = 10;
 
   constructor(private dw: DownloadProviderService, private downloadStore: DownloadStore) { }
 
@@ -26,8 +29,9 @@ export class DownloadListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dw.getAll(this.getCriteria()).subscribe(x => {
-      this.items = x;
+    this.dw.getAll(this.getCriteria(), this.pageSize, this.page * this.pageSize).subscribe(x => {
+      this.items = x.items;
+      this.count = x.count;
     })
   }
 

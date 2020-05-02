@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DownloadProviderService} from "./download-provider.service";
-import {DownloadElement, DownloadStatus} from "./download.models";
+import {DownloadList, DownloadStatus} from "./download.models";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map, filter} from "rxjs/operators";
@@ -64,14 +64,14 @@ export class ServerDownloadProviderService extends DownloadProviderService {
     return str.replace(/\\([\s\S])|(")/g, "$1$2"); // thanks @slevithan!
   }
 
-  getAll(sort: string): Observable<DownloadElement[]> {
+  getAll(sort: string, limit: number, offset: number): Observable<DownloadList> {
     let params = StringUtils.isEmpty(sort) ? null : `sortBy=${sort}`;
 
     if (params == null) {
       return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`) as any;
     }
 
-    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items?${params}`) as any;
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`, {params: {sortBy: sort}}) as any;
   }
 
 }

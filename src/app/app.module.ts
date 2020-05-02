@@ -14,7 +14,7 @@ import {AppConfig} from "./core/app-config";
 import {DownloadStore} from "./download/download-store";
 import {AppGlobalEventBusService} from "./store/app-global-event-bus.service";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbPaginationModule, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     FormsModule,
     FontAwesomeModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgbPaginationModule
   ],
   providers: [
 

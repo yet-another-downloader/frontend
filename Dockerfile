@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:8-alpine AS base
+FROM node:12-alpine AS base
 RUN apk add --no-cache  tini && mkdir -p /root/frontend
 
 WORKDIR /root/frontend
