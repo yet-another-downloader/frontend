@@ -21,6 +21,18 @@
       </b>
     </div>
 
+    <div class="col-lg-1 col-md-1">
+      <b>
+        Action
+      </b>
+    </div>
+
+    <div class="col-lg-1 col-md-1">
+      <b>
+        Size
+      </b>
+    </div>
+
 <!--    <div class="col-md-3">-->
 <!--      <b>-->
 <!--        URL-->
@@ -42,7 +54,6 @@
     <!--{{item | json}}-->
     <!--</div>-->
     <!--        {{item.partUrl}}-->
-
     <div class="col-md-6">
 
       <a [href]="item.url" target="_blank">
@@ -94,14 +105,12 @@
 
     </div>
 
-<!--    <div class="col-md-3">-->
-<!--      <a [href]="item.url" target="_blank">-->
-<!--        {{item.partUrl}}-->
-<!--      </a>-->
-<!--    </div>-->
-
     <div class="col-md-1">
       <fa-icon [icon]="faRedo" (click)="retryDownload(item)" ngbTooltip="Retry"></fa-icon>
+    </div>
+
+    <div class="col-md-1">
+      {{item.size | fileSize}}
     </div>
 
   </div>
