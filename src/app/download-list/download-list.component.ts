@@ -29,10 +29,15 @@ export class DownloadListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dw.getAll(this.getCriteria(), this.pageSize, this.page * this.pageSize).subscribe(x => {
+    this.dw.getAll(this.getCriteria(), this.pageSize, (this.page - 1) * this.pageSize).subscribe(x => {
       this.items = x.items;
       this.count = x.count;
     })
+  }
+
+  onPageChange(newPage: number) {
+    this.page = newPage;
+    this.ngOnInit();
   }
 
   retryDownload(item: DownloadElement) {

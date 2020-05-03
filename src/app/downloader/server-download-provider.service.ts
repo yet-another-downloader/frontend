@@ -71,7 +71,9 @@ export class ServerDownloadProviderService extends DownloadProviderService {
       return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`) as any;
     }
 
-    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`, {params: {sortBy: sort}}) as any;
+    return this.httpClient.get(`${this.appConfig.getServerBaseUrl()}/api/v1/downloader/list_items`,
+      {params: {sortBy: sort, limit: limit.toString(), offset: offset.toString()}}
+    ) as any;
   }
 
 }
